@@ -20,8 +20,6 @@ def get_feed_list():
     return get_juejin_item()
 
 
-# fixme 重构这里
-# fixme bs 的使用不是很好,暂时先这样
 def get_juejin_item():
     global img, title
     img = None
