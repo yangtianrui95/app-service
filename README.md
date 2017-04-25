@@ -1,7 +1,7 @@
 # app-service
 This is a webservice built with Flask, which simply implements crawlers and requests third-party interfaces.
 -----
-For example: 
+just a example: 
 We request url as follows: `http://<host>:<port>/news`
 
 the response is:
@@ -29,3 +29,18 @@ the response is:
 ```
 
 There are many features are being improved...
+
+# useage:
+1. Install all dependencies
+```
+pip install -r requirements.txt
+```
+
+2. Run it now
+```
+python wsgi.py 
+```
+it will be run in `http://127.0.0.1:5000/` (if you in localhost)
+
+
+if you run this on server , you need a nginx server and uwsgi.
