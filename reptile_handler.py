@@ -29,7 +29,7 @@ def get_juejin_item():
     item_set = []
     request = urllib2.Request(reptile_host['juejin'], headers=headers)
     response = urllib2.urlopen(request)
-    soup = BeautifulSoup(response.read(), "lxml")
+    soup = BeautifulSoup(response.read())
     # find tag by class.
     feed_box = soup.select('.conetnt-box')
     _id = None

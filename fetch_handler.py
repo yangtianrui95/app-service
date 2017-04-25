@@ -17,10 +17,19 @@ params = {
     'category': ''
 }
 
-categories = [
-    '__all__',
-    'essay_joke'
-]
+# Return different feed list according to the category.
+categories = {
+    'toutiao': '__all__',
+    'hot': 'news_hot',
+    'video': 'video',
+    'society': 'news_society',
+    'yule': 'news_entertainment',
+    'tech': 'news_tech',
+    'sport': 'news_sport',
+    'car': 'news_car',
+    'finance': 'news_finance',
+    'funny': 'funny'
+}
 
 
 class _ToutiaoObj:
@@ -52,8 +61,11 @@ def get_toutiao_news_list(_category, _url=base_url):
     :param _url: api host.
     :return: news list or None.
     """
-    if _category not in _category:
+    if _category not in categories.keys():
         return None
+    else:
+        # Value is the actual requested parameter.
+        _category = categories.get(_category)
     request_url = _url + _category
     response = _get_response(request_url)
     body = response.read()

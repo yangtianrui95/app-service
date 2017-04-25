@@ -32,13 +32,13 @@ def get_news_list(category):
 
 @application.route('/news', methods=['GET'])
 def get_default_list():
-    return get_news_list(fetch_handler.categories[0])
+    return get_news_list(fetch_handler.categories.keys()[0])
 
 
 # todo delete me !!!
 @application.route('/news/', methods=['GET'])
 def get_default_list_():
-    return get_news_list(fetch_handler.categories[0])
+    return get_news_list(fetch_handler.categories.keys()[0])
 
 
 @application.route('/feed', methods=['GET'])
