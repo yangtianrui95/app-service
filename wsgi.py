@@ -1,7 +1,8 @@
 import json
 
+import sys
 from flask import (Flask, jsonify,
-                   abort, make_response)
+                   abort, make_response, Response)
 
 import fetch_handler
 import page_info
@@ -58,6 +59,25 @@ def get_feed_list():
 @application.route('/', methods=['GET'])
 def print_info():
     abort(404)
+
+
+# mock for string request
+@application.route('/string', methods=['GET'])
+def mock_string_request():
+    return 'request success.'
+
+
+# mock for image request
+@application.route('/jpeg', methods=['GET'])
+def mock_img_request():
+    image = file(sys.path[0] + "/img_rq.jpg")
+    resp = Response(image, mimetype="image/jpeg")
+    return resp
+
+
+@application.route('/channel', methods=['GET'])
+def get_news_channel_list():
+    pass
 
 
 @application.errorhandler(404)
