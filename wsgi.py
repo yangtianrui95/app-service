@@ -1,6 +1,6 @@
 import json
-
 import sys
+
 from flask import (Flask, jsonify,
                    abort, make_response, Response)
 
@@ -70,14 +70,30 @@ def mock_string_request():
 # mock for image request
 @application.route('/jpeg', methods=['GET'])
 def mock_img_request():
+    # get current directory.
     image = file(sys.path[0] + "/img_rq.jpg")
     resp = Response(image, mimetype="image/jpeg")
     return resp
 
 
+# https://www.fedepot.com/she-zhi-flask-xiang-ying-qing-qiu-tou-shi-xian-jing-tai-zi-yuan-chang-shi-huan-cun/?utm_source=tuicool&utm_medium=referral
+@application.after_request
+def app_after_request(response):
+    print response
+    # if Request.endpoint != 'static':
+    #     return response
+
+    response.cache_control.max_age = 15552000
+    return response
+
+
 @application.route('/channel', methods=['GET'])
 def get_news_channel_list():
-    pass
+    _list = fetch_handler.categories.keys()
+    _channel_list = page_info.PageInfo(0 if _list.__len__() >= 0 else -1, _list)
+    response = make_response(json.dumps(_channel_list, default=lambda o: o.__dict__))
+    response.headers['Content-Type'] = "application/json"
+    return response
 
 
 @application.errorhandler(404)
