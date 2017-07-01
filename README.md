@@ -30,7 +30,7 @@ the response is:
 
 There are many features are being improved...
 
-# useage:
+# usage:
 1. Install all dependencies
 ```
 pip install -r requirements.txt
